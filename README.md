@@ -11,3 +11,5 @@ If I choose some day and time and then click another input the value in the pick
 If I try to set a value comming from another page and I try to use value ="Model.IndexPageModel.SomeAwesomeDate" I override the placeholder value.
 see [Index.cshtml](https://github.com/sturlath/SyncfusionQuestionExampleApp/blob/e48156fdcd673b912e5137d5da340b1a16627a35/Razorpages/Pages/Index.cshtml#L10)
 
+3.
+And if I use value="Model.IndexPageModel.SomeAwesomeDate" in the picker the culture js does not kick in.
