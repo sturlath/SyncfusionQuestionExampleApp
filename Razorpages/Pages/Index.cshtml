@@ -4,21 +4,25 @@
 	ViewData["Title"] = "Home page";
 }
 
-
 <div class="container">
 	<form method="post" name="formPostName" id="formPostIndex">
 		<div class="row">
-			<ejs-datetimepicker id="datetimepicker">
+			<ejs-datetimepicker id="datetimepicker" change="onDateChange" > @* value="Model.IndexPageModel.SomeAwesomeDate" will override the placeholder text *@
 				<input type="hidden" id="hiddenDateTimeValueInputId" name="hiddenDateTimeValueInputName" />
 			</ejs-datetimepicker>
 			<div class="col">
 				<input type="text" name="fname" size="100" value="Just some other input to click on and see value in the DateTimePicker change">
 			</div>
 		</div>
+		<div class="form-group">
+			<input type="submit" value="Go to SecondPage" class="btn btn-primary" asp- />
+		</div>
 	</form>
 </div>
 
 <script>
+
+	/* Culture code*/
 	document.addEventListener('DOMContentLoaded', function () {
 		datetimepicker = document.getElementById('datetimepicker').ej2_instances[0];
 		var L10n = ej.base.L10n;
@@ -58,5 +62,19 @@
 			loadCulture(prop);
 		}
 	}
+
+		function onDateChange(args) {
+			Values(args);
+		}
+
+    function Values(args) {
+        var  option = document.getElementById("hiddenDateTimeValueInputId");
+        option.value = "";
+        var calendar = (args.type === undefined) ? args : args.type;
+        if (calendar.value) {
+            option.value = calendar.value.toLocaleString('is-IS', { timeZone: 'UTC' });
+        }
+            document.getElementById('formPostIndex').appendChild(option);
+		}
 
 </script>

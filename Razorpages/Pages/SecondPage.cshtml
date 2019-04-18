@@ -1,0 +1,20 @@
+﻿@page
+@model Razorpages.Pages.SecondPageModel
+@{
+	ViewData["Title"] = "SecondPage";
+}
+
+<h2>SecondPage to go back to Index with date value</h2>
+
+
+<div>
+	<form asp-page-handler="BackToIndex" method="post">
+		@* hidden fields with the values to post back to the previous page. Cant find a better way to do this!
+			then maybe not https://stackoverflow.com/a/47461804/1187583
+			Should try to use TempDataExtensions.cs Set/Get	*@
+		<input asp-for="IndexPageModel.SomeAwesomeDate" hidden="hidden" />
+
+		<button class="btn btn-default">Back to Index</button>
+	</form>
+</div>
+</div>
