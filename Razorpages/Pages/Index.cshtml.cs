@@ -12,6 +12,12 @@ namespace Razorpages.Pages
 
 		public IActionResult OnGet()
 		{
+			// Would need this if I'm using value in the picker because it then shows DateTime.MinValue but we like today
+			//if(IndexPageModel.SomeAwesomeDate == DateTime.MinValue)
+			//{
+			//	IndexPageModel.SomeAwesomeDate = DateTime.UtcNow;
+			//}
+
 			if (!ModelState.IsValid) return Page();
 
 			return Page();
