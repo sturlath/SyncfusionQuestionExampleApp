@@ -1,0 +1,62 @@
+﻿@page
+@model IndexModel
+@{
+	ViewData["Title"] = "Home page";
+}
+
+
+<div class="container">
+	<form method="post" name="formPostName" id="formPostIndex">
+		<div class="row">
+			<ejs-datetimepicker id="datetimepicker">
+				<input type="hidden" id="hiddenDateTimeValueInput" name="pickupdatename" />
+			</ejs-datetimepicker>
+			<div class="col">
+				<input type="text" name="fname" size="100" value="Just some other input to click on and see value in the DateTimePicker change">
+			</div>
+		</div>
+	</form>
+</div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		datetimepicker = document.getElementById('datetimepicker').ej2_instances[0];
+		var L10n = ej.base.L10n;
+		L10n.load({
+			'is': {
+				'datetimepicker': {
+					placeholder: 'Veldu dagsetningu tímans',
+					today: 'í dag'
+				}
+			}
+		});
+		datetimepicker.locale = 'is';
+		loadCultureFiles('is');
+
+	});
+
+	function loadCultureFiles(name) {
+		var files = ['ca-gregorian.json', 'numbers.json', 'timeZoneNames.json'];
+		if (name === 'ar') {
+			files.push('numberingSystems.json');
+		}
+		var loader = ej.base.loadCldr;
+		var loadCulture = function (prop) {
+			var val, ajax;
+			if (name === 'ar' && prop === files.length - 1) {
+				ajax = new ej.base.Ajax(location.origin + location.pathname + '/../../scripts/cldr-data/supplemental/' + files[prop], 'GET', false);
+			} else {
+				ajax = new ej.base.Ajax(location.origin + location.pathname + '/../../scripts/cldr-data/main/' + name + '/' + files[prop], 'GET', false);
+			}
+			ajax.onSuccess = function (value) {
+				val = value;
+			};
+			ajax.send();
+			loader(JSON.parse(val));
+		};
+		for (var prop = 0; prop < files.length; prop++) {
+			loadCulture(prop);
+		}
+	}
+
+</script>
