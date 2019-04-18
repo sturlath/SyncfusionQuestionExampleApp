@@ -7,14 +7,17 @@
 <h2>SecondPage to go back to Index with date value</h2>
 
 
-<div>
+<div class="container">
 	<form asp-page-handler="BackToIndex" method="post">
-		@* hidden fields with the values to post back to the previous page. Cant find a better way to do this!
-			then maybe not https://stackoverflow.com/a/47461804/1187583
-			Should try to use TempDataExtensions.cs Set/Get	*@
-		<input asp-for="IndexPageModel.SomeAwesomeDate" hidden="hidden" />
+		<input type="hidden" name="SomeAwesomeDate" id="SomeAwesomeDate" value="@Model.SomeAwesomeDate"/>
 
-		<button class="btn btn-default">Back to Index</button>
+		<div class="row">
+			<div class="col">
+				<label asp-for="SomeAwesomeDate" class="control-label"></label> : @Model.SomeAwesomeDate
+			</div>
+			<span asp-validation-for="SomeAwesomeDate" class="text-danger"></span>
+			<button class="btn btn-default">Back to Index</button>
+		</div>
+
 	</form>
-</div>
 </div>

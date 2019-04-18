@@ -3,6 +3,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.10" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="17.1.0.40" />
