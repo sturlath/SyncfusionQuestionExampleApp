@@ -10,11 +10,11 @@ namespace Razorpages.Pages
 	[BindProperties(SupportsGet = true)]
 	public class IndexModel : PageModel
 	{
-		private readonly IMapper _mapper;
+		private readonly IMapper mapper;
 
 		public IndexModel(IMapper mapper)
 		{
-			_mapper = mapper;
+			this.mapper = mapper;
 		}
 
 		[DataType(DataType.DateTime)]
@@ -26,7 +26,7 @@ namespace Razorpages.Pages
 		{
 			// How do I update the date picker with the value the second time?
 
-			_mapper.Map(wizzardData, this);
+			mapper.Map(wizzardData, this);
 
 			// Would need this if I'm using value in the picker because it then shows DateTime.MinValue but we like today
 			//if(SomeAwesomeDate == DateTime.MinValue)
@@ -47,7 +47,7 @@ namespace Razorpages.Pages
 			SomeAwesomeDate = Convert.ToDateTime(value);
 
 			var wizzardData = new WizzardData();
-			_mapper.Map(this, wizzardData);
+			mapper.Map(this, wizzardData);
 
 			return RedirectToPage("./SecondPage", wizzardData);
 		}

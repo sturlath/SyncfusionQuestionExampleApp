@@ -10,11 +10,11 @@ namespace Razorpages.Pages
 	[BindProperties(SupportsGet = true)]
 	public class SecondPageModel : PageModel
 	{
-		private readonly IMapper _mapper;
+		private readonly IMapper mapper;
 
 		public SecondPageModel(IMapper mapper)
 		{
-			_mapper = mapper;
+			this.mapper = mapper;
 		}
 
 		[DataType(DataType.DateTime)]
@@ -24,7 +24,7 @@ namespace Razorpages.Pages
 
 		public IActionResult OnGet(WizzardData wizzardData)
 		{
-			_mapper.Map(wizzardData, this);
+			mapper.Map(wizzardData, this);
 
 			return Page();
 		}
@@ -37,7 +37,7 @@ namespace Razorpages.Pages
 			SomeAwesomeDate = Convert.ToDateTime(value);
 
 			var wizzardData = new WizzardData();
-			_mapper.Map(this, wizzardData);
+			mapper.Map(this, wizzardData);
 
 			return RedirectToPage("./Index", wizzardData);
 		}
