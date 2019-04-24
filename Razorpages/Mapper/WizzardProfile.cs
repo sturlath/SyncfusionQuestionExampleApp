@@ -9,6 +9,7 @@ namespace Razorpages.Mapper
 		{
 			CreateMap<WizzardData, Pages.IndexModel>().ReverseMap();
 			CreateMap<WizzardData, Pages.SecondPageModel>().ReverseMap();
+			CreateMap<WizzardData, Pages.ThirdPageModel>().ReverseMap();
 		}
 	}
 }

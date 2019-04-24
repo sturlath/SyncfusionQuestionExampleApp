@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Razorpages.Model;
 using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace Razorpages.Pages
 {
@@ -17,10 +16,8 @@ namespace Razorpages.Pages
 			this.mapper = mapper;
 		}
 
-		[DataType(DataType.DateTime)]
-		[Display(Name = "This is the selected date")]
-		[Required(ErrorMessage = "Please select a date")]
-		public DateTime SomeAwesomeDate { get; set; }
+		[HiddenInput]
+		public DateTime? SomeAwesomeDate { get; set; }
 
 		public IActionResult OnGet(WizzardData wizzardData)
 		{
@@ -29,7 +26,17 @@ namespace Razorpages.Pages
 			return Page();
 		}
 
-		public IActionResult OnPostBackToIndex()
+		public IActionResult OnPost()
+		{
+			var withHiddenIputWeCantDoThis = Request.Form["SomeAwesomeDate"].ToString();
+
+			var wizzard = new WizzardData();
+			mapper.Map(this, wizzard);
+
+			return RedirectToPage("./ThirdPage", wizzard);
+		}
+
+		public IActionResult OnPostBackToPreviousPage()
 		{
 			if (!ModelState.IsValid) return Page();
 

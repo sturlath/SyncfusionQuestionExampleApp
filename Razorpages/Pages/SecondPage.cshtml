@@ -8,16 +8,25 @@
 
 
 <div class="container">
-	<form asp-page-handler="BackToIndex" method="post">
-		<input type="hidden" name="SomeAwesomeDate" id="SomeAwesomeDate" value="@Model.SomeAwesomeDate"/>
-
+	<form method="post">
 		<div class="row">
 			<div class="col">
 				<label asp-for="SomeAwesomeDate" class="control-label"></label> : @Model.SomeAwesomeDate
+				<span asp-validation-for="SomeAwesomeDate" class="text-danger"></span>
 			</div>
-			<span asp-validation-for="SomeAwesomeDate" class="text-danger"></span>
-			<button class="btn btn-default">Back to Index</button>
-		</div>
 
+			<div class="w-100"></div>
+			<div class="col">
+				<div class="form-group">
+					<input type="submit" value="Back to FirstPage" class="btn btn-primary cancel" asp-page-handler="BackToPreviousPage" asp- />
+				</div>
+			</div>
+			<div class="w-100"></div>
+			<div class="col">
+				<div class="form-group">
+					<input type="submit" value="Next page" class="btn btn-primary" asp- />
+				</div>
+			</div>
+		</div>
 	</form>
 </div>
